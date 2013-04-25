@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="XMLSchema1"
+    targetNamespace="http://tempuri.org/XMLSchema1.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:mstns="http://tempuri.org/XMLSchema1.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:proj="http://cs.msu.su/mph/dotnet4/snw"
+>
+  <xs:element name="User">
+    <xs:complexType>
+      <xs:sequence>
+        <!--<xs:element name="User" maxOccurs="unbounded">
+          <xs:complexType>
+              <xs:attribute name="FirstName" type="xs:string" use="required" />
+              <xs:attribute name="LastName" type="xs:string" use="required" />
+              <xs:attribute name="BirthDate" type="xs:date" use="required" />
+              <xs:attribute name="Id" type="xs:ID" use="required" />
+              <xs:attribute name="Email" type="xs:string" use="required" />
+              <xs:attribute name="Photo" type="xs:byte" use="optional"/>
+          </xs:complexType>
+        </xs:element>-->
+        <xs:element name="Relation" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute name="Id" type="xs:ID" use="required" />
+            <xs:attribute name="Type" type="xs:string" use="required" />
+            <!--<xs:attribute name="UserId1" type="xs:ID" use="required" />
+            <xs:attribute name="UserId2" type="xs:ID" use="required" />-->
+          </xs:complexType>
+          <xs:key name="u1key">
+            <xs:selector xpath="proj:u1"/>
+            <xs:field xpath="UserId1"/>
+          </xs:key>
+          <xs:key name="u2key">
+            <xs:selector xpath="proj:u2"/>
+            <xs:field xpath="UserId2"/>
+          </xs:key>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="FirstName" type="xs:string" use="required" />
+      <xs:attribute name="LastName" type="xs:string" use="required" />
+      <xs:attribute name="BirthDate" type="xs:dateTime" use="required" />
+      <xs:attribute name="Email" type="xs:string" use="required" />
+      <xs:attribute name="Photo" type="xs:string" use="optional" />
+    </xs:complexType>
+    <xs:key name ="Id">
+      <xs:selector xpath="proj:USER"/>
+      <xs:field xpath="proj:ID"/>
+    </xs:key>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EDM_model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EDM_modelStoreContainer">
+    <EntitySet Name="UserSet" EntityType="EDM_model.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RelationSet" EntityType="EDM_model.Store.RelationSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="RelationUser11" Association="EDM_model.Store.RelationUser11">
+      <End Role="Relation" EntitySet="RelationSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="RelationUser2" Association="EDM_model.Store.RelationUser2">
+      <End Role="Relation" EntitySet="RelationSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" Nullable="true" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="RelationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="UserId1" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId2" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="RelationUser11">
+    <End Role="Relation" Type="EDM_model.Store.RelationSet" Multiplicity="*" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Relation">
+        <PropertyRef Name="UserId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RelationUser2">
+    <End Role="Relation" Type="EDM_model.Store.RelationSet" Multiplicity="*" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Relation">
+        <PropertyRef Name="UserId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EDM_model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
+        <EntityContainer Name="EDM_modelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="EDM_model.User" />
+          <EntitySet Name="RelationSet" EntityType="EDM_model.Relation" />
+          <AssociationSet Name="RelationUser11" Association="EDM_model.RelationUser11">
+            <End Role="Relation" EntitySet="RelationSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="RelationUser2" Association="EDM_model.RelationUser2">
+            <End Role="Relation" EntitySet="RelationSet" />
+            <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Email" Nullable="false" />
+          <Property Type="Binary" Name="Photo" Nullable="true" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="15" />
+          <NavigationProperty Name="Relation1" Relationship="EDM_model.RelationUser11" FromRole="User" ToRole="Relation" />
+          <NavigationProperty Name="Relation2" Relationship="EDM_model.RelationUser2" FromRole="User" ToRole="Relation" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Relation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="15" />
+          <NavigationProperty Name="User1" Relationship="EDM_model.RelationUser11" FromRole="Relation" ToRole="User" />
+          <Property Type="Guid" Name="UserId1" Nullable="false" />
+          <NavigationProperty Name="User2" Relationship="EDM_model.RelationUser2" FromRole="Relation" ToRole="User" />
+          <Property Type="Guid" Name="UserId2" Nullable="false" />
+        </EntityType>
+        <Association Name="RelationUser11">
+          <End Type="EDM_model.Relation" Role="Relation" Multiplicity="*" />
+          <End Type="EDM_model.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relation">
+              <PropertyRef Name="UserId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RelationUser2">
+          <End Type="EDM_model.Relation" Role="Relation" Multiplicity="*" />
+          <End Type="EDM_model.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Relation">
+              <PropertyRef Name="UserId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EDM_modelStoreContainer" CdmEntityContainer="EDM_modelContainer">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.Relation)">
+        <MappingFragment StoreEntitySet="RelationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UserId1" ColumnName="UserId1" />
+          <ScalarProperty Name="UserId2" ColumnName="UserId2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="493c477154c44639895b1282c2a05f0a" Name="Diagram1">
+        <EntityTypeShape EntityType="EDM_model.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDM_model.Relation" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="EDM_model.RelationUser11" ManuallyRouted="false" />
+        <AssociationConnector Association="EDM_model.RelationUser2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

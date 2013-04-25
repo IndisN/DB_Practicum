@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<User FirstName="Ivan" LastName="Petrov" BirthDate="1988-05-14T00:00:00" Email="email2" Id="cd3c2bde-8a76-4c5f-8507-9aa2511dca6a" Photo="System.Byte[]" xmlns="http://cs.msu.su/mph/dotnet4/snw">
+  <Relation Id="c2b43ec9-a784-4a21-aaa4-8b014f872146" Type="Friends" UserId1="c877af22-0522-4564-96ce-9e740b4d7248" UserId2="cd3c2bde-8a76-4c5f-8507-9aa2511dca6a" xmlns="">http://cs.msu.su/mph/dotnet4/snw</Relation>
+</User>

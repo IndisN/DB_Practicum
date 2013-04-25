@@ -1,0 +1,92 @@
+﻿<Window x:Class="WPF_Viewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPF_Viewer"
+        xmlns:my="clr-namespace:WPF_Viewer"
+        Title="MainWindow" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_SizeChanged" StateChanged="Window_StateChanged">
+    <Window.Resources>
+       
+        <!--<my:MVVM x:Key="mvvm" />-->
+        <!--<my:ImgBinaryConverter x:Key="imgtobin_conv" />-->
+        <my:DateTimeConverter x:Key="date_conv" />
+        <my:RelationTypeConverter x:Key="rel_conv" />
+        <ItemsPanelTemplate x:Key="roundTemplate">
+            <local:RoundPanel Background="#FFDAE2EC" />
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="nodeTemplate">
+            <StackPanel Orientation="Horizontal" Width="200" Height="100">
+                <Image Height="100" Width="100" Stretch="Fill" Source="{Binding .Photo}" MinHeight="50" MinWidth="50" />
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" "/>
+                        <TextBlock Name="FNblock" Text="{Binding Path=.FirstName}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Name="LNblock" Text="{Binding Path=.LastName}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text=" Born: " FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Path=.BirthDate, Converter={StaticResource date_conv}}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="rectTemplate">
+            <Canvas Name="nodeCanvas">
+                <Border Background="LightBlue" BorderBrush="DarkBlue" BorderThickness="2" 
+                        Canvas.Top="{Binding Path=.Value.Y}" Canvas.Left="{Binding Path=.Value.X}" Width="200" Height="100">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Save to XML..." Click="SaveUser_Click" DataContext="{Binding Path=.Key.Id}" />
+                                <MenuItem Header="Delete" Click="DeleteUser_Click" DataContext="{Binding Path=.Key.Id}" />
+                            </ContextMenu>
+                        </StackPanel.ContextMenu>
+                        <Image Height="100" Width="100" Stretch="Fill" Source="{Binding Path=.Key.Photo}" 
+                            MinHeight="50" MinWidth="50"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" "/>
+                            <TextBlock Name="FNblock" Text="{Binding Path=.Key.FirstName}"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Name="LNblock" Text="{Binding Path=.Key.LastName}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" Born: " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=.Key.BirthDate, Converter={StaticResource date_conv}}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text=" Email: " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Path=.Key.Email}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                </Border>
+            </Canvas>
+        </DataTemplate>
+        <DataTemplate x:Key="ribTemplate">
+            <Canvas>
+                <Line X1="{Binding Path=.Value[0].X}" Y1="{Binding Path=.Value[0].Y}"
+                    X2="{Binding Path=.Value[1].X}" Y2="{Binding Path=.Value[1].Y}" 
+                    Stroke="{Binding Path=.Key.Type, Converter={StaticResource rel_conv}}" StrokeThickness="2" /> 
+            </Canvas>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Menu Height="23" HorizontalAlignment="Stretch" Name="mainMenu" VerticalAlignment="Top" >
+            <MenuItem x:Name="addUser" Header="Add User..." Height="23" Width="147" Click="AddUser_Click" 
+                      />
+            <MenuItem x:Name="AddRel" Header="Add Relation..." Height="23" Width="147" Click="AddRel_Click"/>
+            <MenuItem Header="Load from XML..." Height="23" Width="147" Click="LoadUser_Click"/>
+        </Menu>
+        <Canvas>
+            <StackPanel>
+                <ItemsControl Name="usersColl" ItemTemplate="{StaticResource rectTemplate}" 
+                              ItemsSource="{Binding Source={StaticResource mvvm}, Path=UsersColl}">    
+                </ItemsControl>
+                <ItemsControl Name="relationsColl" ItemTemplate="{StaticResource ribTemplate}"
+                              ItemsSource="{Binding Source={StaticResource mvvm}, Path=RelationsColl}"> 
+                </ItemsControl>
+            </StackPanel>
+        </Canvas>
+    </Grid>
+</Window>

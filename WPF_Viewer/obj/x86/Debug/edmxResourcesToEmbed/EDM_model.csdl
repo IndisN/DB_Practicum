@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EDM_model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="EDM_modelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserSet" EntityType="EDM_model.User" />
+    <EntitySet Name="RelationSet" EntityType="EDM_model.Relation" />
+    <AssociationSet Name="RelationUser11" Association="EDM_model.RelationUser11">
+      <End Role="Relation" EntitySet="RelationSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="RelationUser2" Association="EDM_model.RelationUser2">
+      <End Role="Relation" EntitySet="RelationSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Type="String" Name="Email" Nullable="false" />
+    <Property Type="Binary" Name="Photo" Nullable="true" />
+    <Property Type="DateTime" Name="BirthDate" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="15" />
+    <NavigationProperty Name="Relation1" Relationship="EDM_model.RelationUser11" FromRole="User" ToRole="Relation" />
+    <NavigationProperty Name="Relation2" Relationship="EDM_model.RelationUser2" FromRole="User" ToRole="Relation" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Relation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Type="String" Name="Type" Nullable="false" MaxLength="15" />
+    <NavigationProperty Name="User1" Relationship="EDM_model.RelationUser11" FromRole="Relation" ToRole="User" />
+    <Property Type="Guid" Name="UserId1" Nullable="false" />
+    <NavigationProperty Name="User2" Relationship="EDM_model.RelationUser2" FromRole="Relation" ToRole="User" />
+    <Property Type="Guid" Name="UserId2" Nullable="false" />
+  </EntityType>
+  <Association Name="RelationUser11">
+    <End Type="EDM_model.Relation" Role="Relation" Multiplicity="*" />
+    <End Type="EDM_model.User" Role="User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Relation">
+        <PropertyRef Name="UserId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RelationUser2">
+    <End Type="EDM_model.Relation" Role="Relation" Multiplicity="*" />
+    <End Type="EDM_model.User" Role="User" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Relation">
+        <PropertyRef Name="UserId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

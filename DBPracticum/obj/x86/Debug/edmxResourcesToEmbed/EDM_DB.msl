@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EDM_DBStoreContainer" CdmEntityContainer="EDM_DBContainer">
+    <EntitySetMapping Name="FirstNamesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_DB.FirstName)">
+        <MappingFragment StoreEntitySet="FirstNamesSet">
+          <ScalarProperty Name="FName" ColumnName="FName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LastNamesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_DB.LastName)">
+        <MappingFragment StoreEntitySet="LastNamesSet">
+          <ScalarProperty Name="LName" ColumnName="LName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BirthDatesSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_DB.BirthDate)">
+        <MappingFragment StoreEntitySet="BirthDatesSet">
+          <ScalarProperty Name="BDate" ColumnName="BDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelationsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_DB.Relation)">
+        <MappingFragment StoreEntitySet="RelationsSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_DB.User)">
+        <MappingFragment StoreEntitySet="UsersSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserFirstNames" TypeName="EDM_DB.UserFirstNames" StoreEntitySet="UsersSet">
+      <EndProperty Name="FirstNames">
+        <ScalarProperty Name="FName" ColumnName="FirstNames_FName" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserLastNames" TypeName="EDM_DB.UserLastNames" StoreEntitySet="UsersSet">
+      <EndProperty Name="LastNames">
+        <ScalarProperty Name="LName" ColumnName="LastNames_LName" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BirthDatesUser" TypeName="EDM_DB.BirthDatesUser" StoreEntitySet="UsersSet">
+      <EndProperty Name="BirthDates">
+        <ScalarProperty Name="BDate" ColumnName="BirthDates_BDate" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRelations" TypeName="EDM_DB.UserRelations" StoreEntitySet="RelationsSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="User1_ID" />
+      </EndProperty>
+      <EndProperty Name="Relations">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRelations2" TypeName="EDM_DB.UserRelations2" StoreEntitySet="RelationsSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="ID" ColumnName="User2_ID" />
+      </EndProperty>
+      <EndProperty Name="Relations">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

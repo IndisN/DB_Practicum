@@ -1,7 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBPracticum", "DBPracticum\DBPracticum.csproj", "{86460538-A6CD-468E-9CE3-59A0EC31CE6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Viewer", "WPF_Viewer\WPF_Viewer.csproj", "{BF8D948E-BF12-4CEA-AC97-DC620482747A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{86460538-A6CD-468E-9CE3-59A0EC31CE6C} = {86460538-A6CD-468E-9CE3-59A0EC31CE6C}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB6A8917-53FD-4ECC-A85E-8769A8795573}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +20,10 @@ Global
 		{86460538-A6CD-468E-9CE3-59A0EC31CE6C}.Debug|x86.Build.0 = Debug|x86
 		{86460538-A6CD-468E-9CE3-59A0EC31CE6C}.Release|x86.ActiveCfg = Release|x86
 		{86460538-A6CD-468E-9CE3-59A0EC31CE6C}.Release|x86.Build.0 = Release|x86
+		{BF8D948E-BF12-4CEA-AC97-DC620482747A}.Debug|x86.ActiveCfg = Debug|x86
+		{BF8D948E-BF12-4CEA-AC97-DC620482747A}.Debug|x86.Build.0 = Debug|x86
+		{BF8D948E-BF12-4CEA-AC97-DC620482747A}.Release|x86.ActiveCfg = Release|x86
+		{BF8D948E-BF12-4CEA-AC97-DC620482747A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

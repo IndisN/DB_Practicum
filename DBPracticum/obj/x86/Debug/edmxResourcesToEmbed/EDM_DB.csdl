@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="EDM_DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="EDM_DBContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FirstNamesSet" EntityType="EDM_DB.FirstName" />
+    <AssociationSet Name="UserFirstNames" Association="EDM_DB.UserFirstNames">
+      <End Role="User" EntitySet="UsersSet" />
+      <End Role="FirstNames" EntitySet="FirstNamesSet" />
+    </AssociationSet>
+    <EntitySet Name="LastNamesSet" EntityType="EDM_DB.LastName" />
+    <AssociationSet Name="UserLastNames" Association="EDM_DB.UserLastNames">
+      <End Role="User" EntitySet="UsersSet" />
+      <End Role="LastNames" EntitySet="LastNamesSet" />
+    </AssociationSet>
+    <EntitySet Name="BirthDatesSet" EntityType="EDM_DB.BirthDate" />
+    <AssociationSet Name="BirthDatesUser" Association="EDM_DB.BirthDatesUser">
+      <End Role="BirthDates" EntitySet="BirthDatesSet" />
+      <End Role="User" EntitySet="UsersSet" />
+    </AssociationSet>
+    <EntitySet Name="RelationsSet" EntityType="EDM_DB.Relation" />
+    <EntitySet Name="UsersSet" EntityType="EDM_DB.User" />
+    <AssociationSet Name="UserRelations" Association="EDM_DB.UserRelations">
+      <End Role="User" EntitySet="UsersSet" />
+      <End Role="Relations" EntitySet="RelationsSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserRelations2" Association="EDM_DB.UserRelations2">
+      <End Role="User" EntitySet="UsersSet" />
+      <End Role="Relations" EntitySet="RelationsSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Email" Nullable="false" />
+    <Property Type="Byte" Name="Photo" Nullable="false" />
+    <NavigationProperty Name="FirstNames" Relationship="EDM_DB.UserFirstNames" FromRole="User" ToRole="FirstNames" />
+    <NavigationProperty Name="LastNames" Relationship="EDM_DB.UserLastNames" FromRole="User" ToRole="LastNames" />
+    <NavigationProperty Name="BirthDates" Relationship="EDM_DB.BirthDatesUser" FromRole="User" ToRole="BirthDates" />
+    <NavigationProperty Name="Relations1" Relationship="EDM_DB.UserRelations" FromRole="User" ToRole="Relations" />
+    <NavigationProperty Name="Relations2" Relationship="EDM_DB.UserRelations2" FromRole="User" ToRole="Relations" />
+  </EntityType>
+  <EntityType Name="Relation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Guid" Name="ID" Nullable="false" />
+    <NavigationProperty Name="User1" Relationship="EDM_DB.UserRelations" FromRole="Relations" ToRole="User" />
+    <NavigationProperty Name="User2" Relationship="EDM_DB.UserRelations2" FromRole="Relations" ToRole="User" />
+    <Property Type="String" Name="Type" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FirstName">
+    <Key>
+      <PropertyRef Name="FName" />
+    </Key>
+    <Property Type="String" Name="FName" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="EDM_DB.UserFirstNames" FromRole="FirstNames" ToRole="User" />
+  </EntityType>
+  <Association Name="UserFirstNames">
+    <End Type="EDM_DB.User" Role="User" Multiplicity="*" />
+    <End Type="EDM_DB.FirstName" Role="FirstNames" Multiplicity="1" />
+  </Association>
+  <EntityType Name="LastName">
+    <Key>
+      <PropertyRef Name="LName" />
+    </Key>
+    <Property Type="String" Name="LName" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="EDM_DB.UserLastNames" FromRole="LastNames" ToRole="User" />
+  </EntityType>
+  <Association Name="UserLastNames">
+    <End Type="EDM_DB.User" Role="User" Multiplicity="*" />
+    <End Type="EDM_DB.LastName" Role="LastNames" Multiplicity="1" />
+  </Association>
+  <EntityType Name="BirthDate">
+    <Key>
+      <PropertyRef Name="BDate" />
+    </Key>
+    <Property Type="DateTime" Name="BDate" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="EDM_DB.BirthDatesUser" FromRole="BirthDates" ToRole="User" />
+  </EntityType>
+  <Association Name="BirthDatesUser">
+    <End Type="EDM_DB.BirthDate" Role="BirthDates" Multiplicity="1" />
+    <End Type="EDM_DB.User" Role="User" Multiplicity="*" />
+  </Association>
+  <Association Name="UserRelations">
+    <End Type="EDM_DB.User" Role="User" Multiplicity="1" />
+    <End Type="EDM_DB.Relation" Role="Relations" Multiplicity="*" />
+  </Association>
+  <Association Name="UserRelations2">
+    <End Type="EDM_DB.User" Role="User" Multiplicity="1" />
+    <End Type="EDM_DB.Relation" Role="Relations" Multiplicity="*" />
+  </Association>
+</Schema>

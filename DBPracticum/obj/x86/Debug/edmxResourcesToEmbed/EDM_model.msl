@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EDM_modelStoreContainer" CdmEntityContainer="EDM_modelContainer">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="BirthDateBDate" ColumnName="BirthDateBDate" />
+          <ScalarProperty Name="FirstNameFName" ColumnName="FirstNameFName" />
+          <ScalarProperty Name="LastNameLName" ColumnName="LastNameLName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BirthDateSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.BirthDate)">
+        <MappingFragment StoreEntitySet="BirthDateSet">
+          <ScalarProperty Name="BDate" ColumnName="BDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FirstNameSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.FirstName)">
+        <MappingFragment StoreEntitySet="FirstNameSet">
+          <ScalarProperty Name="FName" ColumnName="FName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LastNameSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.LastName)">
+        <MappingFragment StoreEntitySet="LastNameSet">
+          <ScalarProperty Name="LName" ColumnName="LName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RelationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(EDM_model.Relation)">
+        <MappingFragment StoreEntitySet="RelationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UserId1" ColumnName="UserId1" />
+          <ScalarProperty Name="UserId2" ColumnName="UserId2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

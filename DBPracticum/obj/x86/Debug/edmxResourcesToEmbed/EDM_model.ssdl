@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EDM_model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EDM_modelStoreContainer">
+    <EntitySet Name="UserSet" EntityType="EDM_model.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BirthDateSet" EntityType="EDM_model.Store.BirthDateSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FirstNameSet" EntityType="EDM_model.Store.FirstNameSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LastNameSet" EntityType="EDM_model.Store.LastNameSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RelationSet" EntityType="EDM_model.Store.RelationSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="BirthDateUser" Association="EDM_model.Store.BirthDateUser">
+      <End Role="BirthDate" EntitySet="BirthDateSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="FirstNameUser" Association="EDM_model.Store.FirstNameUser">
+      <End Role="FirstName" EntitySet="FirstNameSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="RelationUser11" Association="EDM_model.Store.RelationUser11">
+      <End Role="Relation" EntitySet="RelationSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="RelationUser2" Association="EDM_model.Store.RelationUser2">
+      <End Role="Relation" EntitySet="RelationSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="LastNameUser" Association="EDM_model.Store.LastNameUser">
+      <End Role="LastName" EntitySet="LastNameSet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" Nullable="true" />
+    <Property Name="BirthDateBDate" Type="datetime" Nullable="false" />
+    <Property Name="FirstNameFName" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="LastNameLName" Type="nvarchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="BirthDateSet">
+    <Key>
+      <PropertyRef Name="BDate" />
+    </Key>
+    <Property Name="BDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FirstNameSet">
+    <Key>
+      <PropertyRef Name="FName" />
+    </Key>
+    <Property Name="FName" Type="nvarchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="LastNameSet">
+    <Key>
+      <PropertyRef Name="LName" />
+    </Key>
+    <Property Name="LName" Type="nvarchar" Nullable="false" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="RelationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="UserId1" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId2" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="BirthDateUser">
+    <End Role="BirthDate" Type="EDM_model.Store.BirthDateSet" Multiplicity="1" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BirthDate">
+        <PropertyRef Name="BDate" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="BirthDateBDate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FirstNameUser">
+    <End Role="FirstName" Type="EDM_model.Store.FirstNameSet" Multiplicity="1" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FirstName">
+        <PropertyRef Name="FName" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="FirstNameFName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RelationUser11">
+    <End Role="Relation" Type="EDM_model.Store.RelationSet" Multiplicity="*" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Relation">
+        <PropertyRef Name="UserId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RelationUser2">
+    <End Role="Relation" Type="EDM_model.Store.RelationSet" Multiplicity="*" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Relation">
+        <PropertyRef Name="UserId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LastNameUser">
+    <End Role="LastName" Type="EDM_model.Store.LastNameSet" Multiplicity="1" />
+    <End Role="User" Type="EDM_model.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LastName">
+        <PropertyRef Name="LName" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="LastNameLName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<User FirstName="Kate" LastName="Moss" BirthDate="1980-11-25T00:00:00" Email="email8" Id="a37f44e2-7139-4693-99d0-79acae955ff1" Photo="System.Byte[]" xmlns="http://cs.msu.su/mph/dotnet4/snw">
+  <Relation Id="be38cf97-19a3-4520-b2ce-cfe431deb8b7" Type="Colleagues" UserId1="a5304240-b386-4df6-8b5d-136569a083fe" UserId2="a37f44e2-7139-4693-99d0-79acae955ff1" xmlns="">http://cs.msu.su/mph/dotnet4/snw</Relation>
+  <User Id="a5304240-b386-4df6-8b5d-136569a083fe" FirstName="Ivan" LastName="Denisov" BirthDate="1785-02-02T00:00:00" Email="email6" Photo="System.Byte[]" xmlns="">http://cs.msu.su/mph/dotnet4/snw</User>
+</User>

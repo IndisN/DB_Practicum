@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<User FirstName="Maria" LastName="Kusnetsova" BirthDate="1989-08-13T00:00:00" Email="emauk 7" Id="16730ab6-0359-45ab-a747-1de436ec915f" Photo="System.Byte[]" xmlns="http://cs.msu.su/mph/dotnet4/snw">
+  <Relation Id="35e7cebc-2e5e-432e-888e-8b89414c43c3" Type="Colleagues" UserId1="a5304240-b386-4df6-8b5d-136569a083fe" UserId2="16730ab6-0359-45ab-a747-1de436ec915f" xmlns="">http://cs.msu.su/mph/dotnet4/snw</Relation>
+</User>

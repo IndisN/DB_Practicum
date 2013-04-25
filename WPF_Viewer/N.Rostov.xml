@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<User FirstName="Nikolay" LastName="Rostov" BirthDate="1790-03-03T00:00:00" Email="email4" Id="03f7138c-d1e6-4d27-9947-d45e985fc134" Photo="System.Byte[]" xmlns="http://cs.msu.su/mph/dotnet4/snw">
+  <Relation Id="fc3c726b-f002-4469-a989-fbee1a2be8a9" Type="Colleagues" UserId1="c877af22-0522-4564-96ce-9e740b4d7248" UserId2="03f7138c-d1e6-4d27-9947-d45e985fc134" xmlns="">http://cs.msu.su/mph/dotnet4/snw</Relation>
+</User>

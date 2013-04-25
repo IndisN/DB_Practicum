@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6385a5f9a9bd40a3839f06cd617b8d07" Name="Diagram1" >
+        <EntityTypeShape EntityType="EDM_model.User" Width="1.5" PointX="3.25" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EDM_model.BirthDate" Width="1.5" PointX="0.5" PointY="4" />
+        <EntityTypeShape EntityType="EDM_model.FirstName" Width="1.5" PointX="5.75" PointY="3.625" />
+        <EntityTypeShape EntityType="EDM_model.LastName" Width="1.5" PointX="2.875" PointY="3.875" />
+        <EntityTypeShape EntityType="EDM_model.Relation" Width="1.5" PointX="0.5" PointY="0.875" />
+        <AssociationConnector Association="EDM_model.BirthDateUser" />
+        <AssociationConnector Association="EDM_model.FirstNameUser" />
+        <AssociationConnector Association="EDM_model.RelationUser11" />
+        <AssociationConnector Association="EDM_model.RelationUser2" />
+        <AssociationConnector Association="EDM_model.LastNameUser" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,12 @@
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\DBPracticum.exe.config
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\DBPracticum.exe
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\DBPracticum.pdb
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\EntityFramework.dll
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\EntityFramework.SqlServer.dll
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\EntityFramework.SqlServerCompact.dll
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\EntityFramework.xml
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\EntityFramework.SqlServer.xml
+D:\Documents\Programming\DB_Practicum\DBPracticum\bin\Debug\EntityFramework.SqlServerCompact.xml
+D:\Documents\Programming\DB_Practicum\DBPracticum\obj\x86\Debug\DBPracticum.csprojResolveAssemblyReference.cache
+D:\Documents\Programming\DB_Practicum\DBPracticum\obj\x86\Debug\DBPracticum.exe
+D:\Documents\Programming\DB_Practicum\DBPracticum\obj\x86\Debug\DBPracticum.pdb
