@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("web.config")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("web.debug.config")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("web.release.config")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("edm_model.edmx.sql")]
 
 

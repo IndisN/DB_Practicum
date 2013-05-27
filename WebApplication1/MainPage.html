@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Social network</title>
+    <script src="Scripts/jquery-1.9.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function drawUser(X, Y, fname, lname, date, email, photo) {
+
+                var canvas = document.getElementById('usersC');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.rect(+X / 10 - 15, +Y / 10 - 10, 90, 60);
+                context.fillStyle = 'white';
+                context.fill();
+                context.lineWidth = 3;
+                context.strokeStyle = 'blue';
+                context.stroke();
+
+
+            }
+            function drawRelation(X1, X2, Y1, Y2, color) {
+                var canvas = document.getElementById('relationsC');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.moveTo(X1, Y1);
+                context.lineTo(X2, Y2);
+                context.lineWidth = 3;
+                context.strokeStyle = color;
+                context.stroke();
+            }
+            $.ajax({
+                url: "api/IndexApi/GetModel",
+                dataType: "json",
+                success:
+                    function (data) {
+                        //i = data.UsersColl.Count;
+                        //console.log("Count" + i);
+                        //for (i--; i >= 0; i--) {
+                        //    usr = data.users[i];
+                        //    drawUser(usr.X, usr.Y, usr.Name, usr.BirthDate, usr.GetSRC, usr.Email, usr.GetColor);
+                        //    console.log("    User: " + usr.X + usr.Y + usr.Name + usr.BirthDate + usr.GetSRC + usr.Email + usr.GetColor);
+                        //}
+                        for (var user in data.UsersColl) {
+                            drawUser(UsersColl.Value.X, UsersColl.Value.Y, UsersColl.Key.FirstName, UsersColl.Key.LastName,
+                                UsersColl.Key.BirthDate, UsersColl.Key.Email, UsersColl.Key.Photo);
+                        }
+                        for (var rib in data.RelationsColl) {
+                            var color;
+                            switch (rib.Key.Type) {
+                                case "Friends": color = 'red'; break;
+                                case "Colleagues": color = 'green'; break;
+                                case "Relatives": color = 'purple'; break;
+                                default: color = 'black';
+                            }
+                            drawRelation(rib.Value[0].X, rib.Value[1].X, rib.Value[0].Y, rib.Value[1].Y, color);
+                            console.log("relation " + rib.Key.Id);
+                        }
+                    },
+                error: function (data, textstatus) {
+                    console.log(textstatus);
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h3>This is social </h3>
+    <canvas id="usersC">
+
+    </canvas>
+    <canvas id="relationsC">
+        </canvas>
+</body>
+</html>

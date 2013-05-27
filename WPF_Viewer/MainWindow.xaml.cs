@@ -81,5 +81,11 @@ namespace WPF_Viewer
         {
             (App.Current.Resources["mvvm"] as MVVM).AddRel_Click();
         }
+
+        private void Window_DataContextChanged_1(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            this.OnContentChanged(App.Current.Resources["mvvm"] as MVVM, App.Current.Resources["mvvm"] as MVVM);
+            
+        }
     }
 }

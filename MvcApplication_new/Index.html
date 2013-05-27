@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Social network</title>
+    <script src="Scripts/jquery-1.7.1.min.js"></script>
+    <script >
+        $(document).ready(function () {
+            function drawUser(X, Y, fname, lname, date, email, photo) {
+
+                var canvas = document.getElementById('usersC');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.rect(X, Y, 200, 100);
+                context.fillStyle = 'white';
+                context.fill();
+                context.fillText(fname, X, Y);
+                context.fillText(lname, +X + 20, Y);
+                context.lineWidth = 3;
+                context.strokeStyle = 'blue';
+                context.stroke();
+
+
+            }
+            function drawRelation(X1, X2, Y1, Y2, color) {
+                var canvas = document.getElementById('relationsC');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.moveTo(X1, Y1);
+                context.lineTo(X2, Y2);
+                context.lineWidth = 3;
+                context.strokeStyle = color;
+                context.stroke();
+            }
+            $.ajax({
+                url: "api/IndexApi/GetModel",
+                dataType: "json",
+                success:
+                    function (data) {
+                        console.log("success");
+                        i = data.SimpleUserC.Count;
+                        for (--i; i <= 0; i--) {
+                            drawUser(data.SimpleUserP[i].X, data.SimpleUserP[i].Y, data.SimpleUserC[i].FirstName,
+                                data.SimpleUserC[i].LastName,
+                                data.SimpleUserC[i].BirthDate, data.SimpleUserC[i].Email, data.SimpleUserC[i].Photo);
+                        }
+                        j = data.SimpleRelC.Count;
+                        for (--j; j <= 0; j--) {
+                            var color;
+                            switch (data.SimpleRelC[j].Type) {
+                                case "Friends": color = 'red'; break;
+                                case "Colleagues": color = 'green'; break;
+                                case "Relatives": color = 'purple'; break;
+                                default: color = 'black';
+                            }
+                            drawRelation(data.SimpleRelP[j][0].X, data.SimpleRelP[j][1].X,
+                                data.SimpleRelP[j][0].Y, data.SimpleRelP[j][1].Y, color);
+                            console.log("relation " + data.SimpleRelC[j].Id);
+                        }
+                    },
+                error: function (data, textstatus) {
+                    console.log(textstatus);
+                    //console.log(data.UsersColl.Count);
+                }
+            });
+        });
+
+    </script>
+    <style>
+        #wrapper 
+        {
+            width: 90%;
+            margin: 20px auto;
+            color: lightblue;
+        }
+        #relationsC
+        {
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h3>This is social </h3>
+    <div id="wrapper">
+    <canvas id="usersC">
+
+    </canvas>
+    <canvas id="relationsC">
+        </canvas>
+        </div>
+</body>
+</html>

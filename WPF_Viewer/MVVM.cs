@@ -19,7 +19,7 @@ using System.Xml.Schema;
 
 namespace WPF_Viewer
 {
-    class MVVM : INotifyPropertyChanged
+    public class MVVM : INotifyPropertyChanged
     {
         private EDM_modelContainer db;
         private int windowHeight, windowWidth;
@@ -96,20 +96,61 @@ namespace WPF_Viewer
             db.UserSet.Load();
             //FillDB(); //once
             //db.SaveChanges();
-
+            
             windowWidth = 800;
             windowHeight = 400;
             usersColl = new Dictionary<User, System.Windows.Point>();
+            
             UpdateUsersColl();
             UpdateRelationsColl();
         }
 
-        public Dictionary<User, System.Windows.Point> UsersColl { get { return usersColl; } }
+        public Dictionary<User, System.Windows.Point> UsersColl { get { return usersColl; } set { usersColl = value; } }
         public Dictionary<Relation, System.Windows.Point[]> RelationsColl { get { return relationsColl; } }
+
+        public User[] SimpleUserC { get
+            {
+                Collection<User> tmp = new Collection<User>();
+                foreach (var user in usersColl.Keys) { tmp.Add(user); }
+                return tmp.ToArray();
+        } }
+
+        public System.Windows.Point[] SimpleUserP
+        {
+            get
+            {
+                Collection<System.Windows.Point> tmp = new Collection<System.Windows.Point>();
+                foreach (var user in usersColl.Values) { tmp.Add(user); }
+                return tmp.ToArray();
+            }
+        }
+
+        //public System.Windows.Point[][] SimpleRelP
+        //{
+        //    get
+        //    {
+        //        Collection<System.Windows.Point[]> tmp = new Collection<System.Windows.Point[]>();
+        //        foreach (var rel in relationsColl.Values) { tmp.Add(rel); }
+        //        return tmp.ToArray();
+        //    }
+        //}
+
+        public Relation[] SimpleRelC
+        {
+            get
+            {
+                Collection<Relation> tmp = new Collection<Relation>();
+                foreach (var rel in relationsColl.Keys) { tmp.Add(rel); }
+                return tmp.ToArray();
+            }
+        }
+
+
 
         public void UpdateUsersColl()
         {
             usersColl = new Dictionary<User,System.Windows.Point>();
+            UsersColl = new Dictionary<User, System.Windows.Point>();
             double angle = 0;
             double _incrementalAngularSpace = (360.0 / db.UserSet.Local.Count) * (Math.PI / 180);
             int radius_x = (int)(WSW*0.4);
@@ -120,6 +161,7 @@ namespace WPF_Viewer
                     new System.Windows.Point((int)(WSW/2 + radius_x*Math.Cos(angle)),(int)(WSH/2 + radius_y*Math.Sin(angle))));
                 angle += _incrementalAngularSpace;
             }
+            NotifyPropertyChanged("UsersColl");
         }
 
         /// <summary>
@@ -164,6 +206,7 @@ namespace WPF_Viewer
 
                 relationsColl.Add(r, value);
             }
+            NotifyPropertyChanged("RelationsColl");
         }
 
         public void UpdateCoords()
@@ -180,6 +223,9 @@ namespace WPF_Viewer
                         (int)(WSH / 2 + radius_y * Math.Sin(angle))
                         );
             }
+
+            NotifyPropertyChanged("UsersColl");
+            NotifyPropertyChanged("RelationsColl");
         }
 
         public void Window_StateChanged()
@@ -190,8 +236,8 @@ namespace WPF_Viewer
         public int WSH { get { return windowHeight; } set { windowHeight = value; } }
         public int WSW { get { return windowWidth; } set { windowWidth = value; } }
 
-        public DbSet<User> Users { get { return db.UserSet; } }
-        public DbSet<Relation> Relations { get { return db.RelationSet; } }
+        //public DbSet<User> Users { get { return db.UserSet; } }
+        //public DbSet<Relation> Relations { get { return db.RelationSet; } }
 
         private Relation newRel;
         public Relation NewRel { get { return newRel; } set { newRel = value; } }
@@ -265,7 +311,8 @@ namespace WPF_Viewer
             //UpdateCoords();
             UpdateRelationsColl();
 //            App.Current.MainWindow.Show();
-
+            NotifyPropertyChanged("UsersColl");
+            NotifyPropertyChanged("RelationsColl");
         }
 
         public void SaveUserXML(Guid userId)
@@ -442,6 +489,8 @@ namespace WPF_Viewer
                 
                 //MVVM MVVM_obj = new MVVM();
                 //this.NavigationService.Navigate(MVVM_obj);
+                NotifyPropertyChanged("UsersColl");
+                NotifyPropertyChanged("RelationsColl");
             }
         }
 
@@ -462,10 +511,19 @@ namespace WPF_Viewer
             UpdateUsersColl();
             UpdateRelationsColl();
 
-            PropertyChanged(this, new PropertyChangedEventArgs("Del"));
+            NotifyPropertyChanged("UsersColl");
+            NotifyPropertyChanged("RelationsColl");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }  
     }
 
     class MyCommand : ICommand

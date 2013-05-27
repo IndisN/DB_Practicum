@@ -1,0 +1,17 @@
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\WebApplication_emp.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\WebApplication_emp.pdb
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\obj\Debug\WebApplication_emp.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\obj\Debug\WebApplication_emp.pdb
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\Newtonsoft.Json.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\System.Net.Http.Formatting.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\System.Web.Http.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\System.Web.Http.WebHost.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\WPF_Viewer.exe
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\EntityFramework.dll
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\WPF_Viewer.pdb
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\Newtonsoft.Json.xml
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\System.Net.Http.Formatting.xml
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\System.Web.Http.xml
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\System.Web.Http.WebHost.xml
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\bin\EntityFramework.xml
+D:\Documents\Programming\DB_Practicum\WebApplication_emp\obj\Debug\WebApplication_emp.csprojResolveAssemblyReference.cache

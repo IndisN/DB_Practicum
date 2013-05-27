@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:WPF_Viewer"
         xmlns:my="clr-namespace:WPF_Viewer"
-        Title="MainWindow" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_SizeChanged" StateChanged="Window_StateChanged">
+        Title="MainWindow" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_SizeChanged" StateChanged="Window_StateChanged" DataContextChanged="Window_DataContextChanged_1">
     <Window.Resources>
        
         <!--<my:MVVM x:Key="mvvm" />-->
